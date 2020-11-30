@@ -18,10 +18,20 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // connect the mongoose database 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget-tracker", {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget-tracker", {
+//   useNewUrlParser: true,
+//   useFindAndModify: false
+// });
+
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/budget-tracker',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
 // access to route folder
 app.use(require("./routes/api.js"));
